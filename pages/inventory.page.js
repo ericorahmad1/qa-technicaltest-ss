@@ -9,14 +9,26 @@ class InventoryPage {
     }
 
     async addMultipleItemsToCart(itemCount) {
-        const items = await this.page.$$('.inventory_item');
-        for (let i = 0; i < itemCount; i++) {
-            await items[i].$('button').click();
-        }
+        // const items = await this.page.$$('.inventory_item');
+        // for (let i = 0; i < itemCount; i++) {
+        //     await items[i].click('[data-test^="add-to-cart"]');
+        //     await items[i].$('button').click();
+        // }
+        const items = await this.page.$$('[data-test="inventory-item"]');
+        // Step 2: Collect all buttons inside the selected items
+        const buttons = [];
+        items.forEach(item => {
+        const button = item.$('[type=button]')
+        
+        if (button) {
+            buttons.push(button);
+         }
+        });
+
     }
 
     async goToCart() {
-        await this.page.click('.shopping_cart_link');
+        await this.page.locator('[data-test="shopping-cart-link"]').click();
     }
 
     async removeItemFromCart(itemIndex) {

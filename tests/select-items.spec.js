@@ -10,7 +10,8 @@ test('Select 2 items and verify cart', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
     await loginPage.login('standard_user', 'secret_sauce');
 
-    await inventoryPage.addMultipleItemsToCart(2);
+    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
     await inventoryPage.goToCart();
     
     const cartItems = await page.$$('.cart_item');
@@ -24,7 +25,9 @@ test('Select 3 items and verify cart', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
     await loginPage.login('standard_user', 'secret_sauce');
 
-    await inventoryPage.addMultipleItemsToCart(3);
+    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
     await inventoryPage.goToCart();
 
     const cartItems = await page.$$('.cart_item');
@@ -38,7 +41,10 @@ test('Select 4 items and verify cart', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
     await loginPage.login('standard_user', 'secret_sauce');
 
-    await inventoryPage.addMultipleItemsToCart(4);
+    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click();
     await inventoryPage.goToCart();
 
     const cartItems = await page.$$('.cart_item');
